@@ -1,4 +1,4 @@
-const { checkImplementedDecorator } = require('../lib');
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Given matrix, a rectangular matrix of integers,
@@ -16,8 +16,21 @@ const { checkImplementedDecorator } = require('../lib');
  *
  * The result should be 9
  */
-function getMatrixElementsSum(/* matrix */) {}
+function getMatrixElementsSum(matrix) {
+  let sum = 0;
+  for (j = 0; j < matrix[0].length; j++) {
+    sum = sum + matrix[0][j];
+  }
+  for (j = 0; j < matrix[0].length; j++) {
+    for (i = 1; i < matrix.length; i++) {
+      if (matrix[i-1][j] !== 0) {
+        sum = sum + matrix[i][j];
+      } 
+    }  
+  }
+ return sum;
+}
 
 module.exports = {
-  getMatrixElementsSum: checkImplementedDecorator(getMatrixElementsSum),
+  getMatrixElementsSum
 };

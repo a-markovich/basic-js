@@ -1,9 +1,9 @@
-const { checkImplementedDecorator } = require('../lib');
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Given matrix where you have to find cats by ears "^^"
  *
- * @param {Array<Array>} matrix
+ * @param {Array<Array>} matrix 
  * @return {Number} count of cats found
  *
  * @example
@@ -14,8 +14,19 @@ const { checkImplementedDecorator } = require('../lib');
  * ]) => 3`
  *
  */
-function countCats(/* matrix */) {}
+function countCats(matrix) {
+  let count = 0;
+  for(let i in matrix) {
+    if (typeof matrix[i] === "object") {
+			count = count + countCats(matrix[i]);
+		}
+    if (matrix[i] === '^^') {
+      count++;
+    }
+  }
+  return count;
+}
 
 module.exports = {
-  countCats: checkImplementedDecorator(countCats),
+  countCats
 };

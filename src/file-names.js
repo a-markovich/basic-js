@@ -1,4 +1,4 @@
-const { checkImplementedDecorator } = require('../lib');
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * There's a list of file, since two files cannot have equal names,
@@ -15,8 +15,19 @@ const { checkImplementedDecorator } = require('../lib');
  * the output should be ["file", "file(1)", "image", "file(1)(1)", "file(2)"]
  *
  */
-function renameFiles(/* names */) {}
+function renameFiles(names) {
+  let k = 1;
+  for (i = 0; i < names.length; i++) {
+    k = 1;
+    for (j = i + 1; j < names.length; j++)
+    if (names[i] === names[j]) {
+      names[j] = names[j] + '(' + k + ')';
+      k++;
+    }
+  }
+  return names;
+}
 
 module.exports = {
-  renameFiles: checkImplementedDecorator(renameFiles),
+  renameFiles
 };
