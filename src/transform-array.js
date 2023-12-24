@@ -20,7 +20,8 @@ function transform(arr) {
   let discardPrev = '--discard-prev';
   let doubleNext = '--double-next';
   let doublePrev = '--double-prev';
-  for (i = 0; i < arr.length; i++) {
+  
+    for (i = 0; i < arr.length; i++) {
     if (arr[i] === doubleNext) {
       if (i === arr.length-1) {
         arrNew = arr.slice(0, i);
@@ -69,10 +70,8 @@ function transform(arr) {
         }
       }
     }
-    
-    
-  }
-  return arrNew;
+      }
+  return arrNew; 
 }
 
 module.exports = {
